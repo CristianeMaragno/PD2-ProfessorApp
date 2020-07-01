@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="alimentacao">
+        <item>Nenhum selecionado</item>
+        <item>Ótima</item>
+        <item>Média</item>
+        <item>Ruim</item>
+    </string-array>
+
+    <string-array name="sono">
+        <item>Nenhum selecionado</item>
+        <item>Dormiu bem</item>
+        <item>Dormiu pouco</item>
+        <item>Dormiu muito bem</item>
+    </string-array>
+</resources>

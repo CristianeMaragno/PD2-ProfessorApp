@@ -1,0 +1,2 @@
+rootProject.name='PD2 Professor'
+include ':app'
