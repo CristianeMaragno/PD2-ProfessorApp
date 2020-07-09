@@ -70,7 +70,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_sono" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_sono"
+        android:textColor="@color/Amarelo"
+        android:background="@drawable/button_style"/>
 
     <TextView
         android:id="@+id/textView5"
