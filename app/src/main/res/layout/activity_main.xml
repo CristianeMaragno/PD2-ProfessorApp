@@ -59,7 +59,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email do aluno"
+        android:text="Email do professor"
         app:layout_constraintBottom_toTopOf="@+id/nomeAluno"
         app:layout_constraintStart_toStartOf="@+id/nomeAluno" />
 
