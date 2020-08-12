@@ -4,6 +4,7 @@ public class UserInformation {
     String nome;
     String turma;
     String status;
+    String email;
 
     public UserInformation() {
 
@@ -31,5 +32,13 @@ public class UserInformation {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
