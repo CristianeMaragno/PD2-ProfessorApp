@@ -30,7 +30,7 @@ import java.util.Date;
 
 public class CalendarioActivity extends AppCompatActivity {
 
-    ImageButton voltar;
+    //ImageButton voltar;
     MaterialCalendarView calendarView;
     ListView datas_calendario_escolar;
     String mes_atual;
@@ -51,7 +51,8 @@ public class CalendarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario);
 
-        voltar = (ImageButton) findViewById(R.id.buttonVoltarCalendario);
+        //voltar = (ImageButton) findViewById(R.id.buttonVoltarCalendario);
+
         calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
         datas_calendario_escolar = (ListView) findViewById(R.id.listCalendar);
 
@@ -65,7 +66,7 @@ public class CalendarioActivity extends AppCompatActivity {
         Date data_data_i = new Date();
         ano_atual = data_data_i.toString().substring(30,34);
         mes_atual = data_data_i.toString().substring(4,7);
-        data_atual = mes_atual + "_" + ano_atual;
+        data_atual = Recuperar_ref(mes_atual, ano_atual);
         Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();
 
         myRef = mFirebaseDatase.getReference().child("calendario_pedagogico").child(data_atual);
@@ -76,7 +77,7 @@ public class CalendarioActivity extends AppCompatActivity {
                 Date data_data = date.getDate();
                 ano_atual = data_data.toString().substring(30,34);
                 mes_atual = data_data.toString().substring(4,7);
-                data_atual = mes_atual + "_" + ano_atual;
+                data_atual = Recuperar_ref(mes_atual, ano_atual);
                 Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();
                 //pegar eventos no database e atualizar list View com os eventos do mês pedido
                 myRef2 = mFirebaseDatase.getReference().child("calendario_pedagogico").child(data_atual);
@@ -106,14 +107,14 @@ public class CalendarioActivity extends AppCompatActivity {
             }
         });
 
-        voltar.setOnClickListener(new View.OnClickListener() {
+        /*voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(CalendarioActivity.this, MenuActivity.class);
                 startActivity(i);
             }
-        });
+        });*/
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -165,5 +166,56 @@ public class CalendarioActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    public static String Recuperar_ref(String mes_selecionado, String ano_atual){
+
+        String mes = mes_selecionado;
+        String ano = ano_atual;
+
+        switch(mes) {
+            case "Jan":
+                mes = "Janeiro";
+                break;
+            case "Feb":
+                mes = "Fevereiro";
+                break;
+            case "Mar":
+                mes = "Março";
+                break;
+            case "Apr":
+                mes = "Abril";
+                break;
+            case "May":
+                mes = "Maio";
+                break;
+            case "Jun":
+                mes = "Junho";
+                break;
+            case "Jul":
+                mes = "Julho";
+                break;
+            case "Aug":
+                mes = "Agosto";
+                break;
+            case "Sep":
+                mes = "Setembro";
+                break;
+            case "Oct":
+                mes = "Outubro";
+                break;
+            case "Nov":
+                mes = "Novembro";
+                break;
+            case "Dec":
+                mes = "Dezembro";
+                break;
+            default:
+                mes = "Janeiro";
+        }
+
+        String ref = mes + "_" + ano;
+
+        return ref;
     }
 }
