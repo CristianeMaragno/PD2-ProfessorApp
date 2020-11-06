@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         login = (Button) findViewById(R.id.buttonLogin);
-        aluno = (EditText) findViewById(R.id.nomeAluno);
-        senha = (EditText) findViewById(R.id.senhaAluno);
+        aluno = (EditText) findViewById(R.id.nomeProfessor);
+        senha = (EditText) findViewById(R.id.senhaProfessor);
         progressBar = (ProgressBar) findViewById(R.id.progressBarLogin);
         progressBar.setVisibility(View.GONE);
         textError = (TextView) findViewById(R.id.textErrorLogin);
