@@ -64,7 +64,7 @@ public class CalendarioActivity extends AppCompatActivity {
 
         DateFormat dateFormat = new SimpleDateFormat("MM");
         Date data_data_i = new Date();
-        ano_atual = data_data_i.toString().substring(30,34);
+        ano_atual = data_data_i.toString().substring(24,28);
         mes_atual = data_data_i.toString().substring(4,7);
         data_atual = Recuperar_ref(mes_atual, ano_atual);
         Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();
@@ -75,7 +75,7 @@ public class CalendarioActivity extends AppCompatActivity {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 Date data_data = date.getDate();
-                ano_atual = data_data.toString().substring(30,34);
+                ano_atual = data_data.toString().substring(24,28);
                 mes_atual = data_data.toString().substring(4,7);
                 data_atual = Recuperar_ref(mes_atual, ano_atual);
                 Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();

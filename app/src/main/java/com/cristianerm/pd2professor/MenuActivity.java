@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class MenuActivity extends AppCompatActivity {
 
     ImageView agenda;
@@ -62,9 +63,9 @@ public class MenuActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(MenuActivity.this, "User sighed in", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MenuActivity.this, "User sighed in", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MenuActivity.this, "User not sighed in", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MenuActivity.this, "User not sighed in", Toast.LENGTH_SHORT).show();
                 }
             }
         };
