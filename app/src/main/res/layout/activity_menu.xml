@@ -1,5 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Vermelho"
+    tools:context=".MenuActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/Amarelo">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    app:srcCompat="@drawable/logo"
+                    android:layout_marginTop="7dp"
+                    android:paddingRight="@dimen/padding_right_icon_menu"
+                    android:paddingLeft="@dimen/padding_left_icon_menu" />
+
+                <TextView
+                    android:id="@+id/identificadorProfessor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Professor(a)"
+                    android:textColor="@color/Vermelho"
+                    android:textSize="24sp"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.33">
+
+                    <ImageView
+                        android:id="@+id/calendarioIcon"
+                        android:layout_width="@dimen/width_icon_menu"
+                        android:layout_height="@dimen/width_icon_menu"
+                        app:srcCompat="@drawable/icon_calendario"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calendário"
+                        android:textColor="@color/Amarelo"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.33">
+
+                    <ImageView
+                        android:id="@+id/agendaIcon"
+                        android:layout_width="@dimen/width_icon_menu"
+                        android:layout_height="@dimen/width_icon_menu"
+                        app:srcCompat="@drawable/icon_agenda"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agenda"
+                        android:textColor="@color/Amarelo"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.33">
+
+                    <ImageView
+                        android:id="@+id/diarioIcon"
+                        android:layout_width="@dimen/width_icon_menu"
+                        android:layout_height="@dimen/width_icon_menu"
+                        app:srcCompat="@drawable/icon_professor"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Diário"
+                        android:textColor="@color/Amarelo"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="0.33">
+
+                    <ImageView
+                        android:id="@+id/ouvidoriaIcon"
+                        android:layout_width="@dimen/width_icon_menu"
+                        android:layout_height="@dimen/width_icon_menu"
+                        app:srcCompat="@drawable/icon_chat"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ouvidoria"
+                        android:textColor="@color/Amarelo"
+                        android:textSize="16sp"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Amarelo"
+                android:textColor="@color/colorPrimary"
+                android:text="LOG OUT"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
+
+
+
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -130,4 +311,4 @@
         app:layout_constraintTop_toBottomOf="@+id/diarioIcon" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>-->
