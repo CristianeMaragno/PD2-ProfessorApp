@@ -2,6 +2,7 @@ package com.cristianerm.pd2professor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.Date;
 
 public class CalendarioActivity extends AppCompatActivity {
 
-    //ImageButton voltar;
+    Toolbar toolbar_calendario;
     MaterialCalendarView calendarView;
     ListView datas_calendario_escolar;
     String mes_atual;
@@ -51,10 +52,23 @@ public class CalendarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario);
 
-        //voltar = (ImageButton) findViewById(R.id.buttonVoltarCalendario);
+        toolbar_calendario = (Toolbar) findViewById(R.id.tool_bar_calendario);
+        setSupportActionBar(toolbar_calendario);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar_calendario.setTitle("");
+        toolbar_calendario.setSubtitle("");
 
         calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
         datas_calendario_escolar = (ListView) findViewById(R.id.listCalendar);
+
+        toolbar_calendario.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                i = new Intent(CalendarioActivity.this, MenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         final ArrayList<String> datas_calendario = new ArrayList<String>();
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(CalendarioActivity.this, android.R.layout.simple_list_item_1, datas_calendario);
@@ -106,15 +120,6 @@ public class CalendarioActivity extends AppCompatActivity {
                 });
             }
         });
-
-        /*voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i;
-                i = new Intent(CalendarioActivity.this, MenuActivity.class);
-                startActivity(i);
-            }
-        });*/
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
