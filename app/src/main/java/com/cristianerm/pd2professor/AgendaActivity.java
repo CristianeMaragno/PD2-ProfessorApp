@@ -2,6 +2,7 @@ package com.cristianerm.pd2professor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class AgendaActivity extends AppCompatActivity {
     Spinner spinner_alimento;
     Spinner spinner_sono;
 
-    //ImageButton voltar;
+    Toolbar toolbar_agenda;
     Button button_agenda;
 
     private static final String TAG = "Agenda Activity";
@@ -47,10 +48,15 @@ public class AgendaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
+        toolbar_agenda = (Toolbar) findViewById(R.id.tool_bar_agenda);
+        setSupportActionBar(toolbar_agenda);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar_agenda.setTitle("");
+        toolbar_agenda.setSubtitle("");
+
         spinner_aluno = (Spinner) findViewById(R.id.spinner_aluno);
         spinner_alimento = (Spinner) findViewById(R.id.spinner);
         spinner_sono = (Spinner) findViewById(R.id.spinner_sono);
-        //voltar = (ImageButton) findViewById(R.id.buttonVoltarAgenda);
         button_agenda = (Button) findViewById(R.id.button_agenda);
 
         mAuth = FirebaseAuth.getInstance();
@@ -59,6 +65,15 @@ public class AgendaActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String nome_turma = bundle.getString("nome_turma");
         myRef = mFirebaseDatase.getReference().child("turmas").child(nome_turma);
+
+        toolbar_agenda.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                i = new Intent(AgendaActivity.this, MenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         final ArrayList<String> alunos_turma = new ArrayList<String>();
 
@@ -83,15 +98,6 @@ public class AgendaActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        /*voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i;
-                i = new Intent(AgendaActivity.this, MenuActivity.class);
-                startActivity(i);
-            }
-        }); */
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
