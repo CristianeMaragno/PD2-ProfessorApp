@@ -40,7 +40,7 @@ import java.util.Date;
 
 public class DiarioActivity extends AppCompatActivity {
 
-    ImageButton voltar;
+    //ImageButton voltar;
     EditText mensagemDiario;
     Button escolher_imagem;
     ImageView imagem;
@@ -66,7 +66,7 @@ public class DiarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diario);
 
-        voltar = (ImageButton) findViewById(R.id.buttonVoltarDiario);
+        //voltar = (ImageButton) findViewById(R.id.buttonVoltarDiario);
         mensagemDiario = (EditText) findViewById(R.id.editTextDiario);
         enviar = (Button) findViewById(R.id.buttonDiario);
         escolher_imagem = (Button) findViewById(R.id.button_choose_image);
@@ -96,14 +96,14 @@ public class DiarioActivity extends AppCompatActivity {
             }
         };
 
-        voltar.setOnClickListener(new View.OnClickListener() {
+       /* voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(DiarioActivity.this, MenuActivity.class);
                 startActivity(i);
             }
-        });
+        });*/
 
         escolher_imagem.setOnClickListener(new View.OnClickListener() {
             @Override
