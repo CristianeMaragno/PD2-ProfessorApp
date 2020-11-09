@@ -3,6 +3,7 @@ package com.cristianerm.pd2professor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -40,7 +41,7 @@ import java.util.Date;
 
 public class DiarioActivity extends AppCompatActivity {
 
-    //ImageButton voltar;
+    Toolbar toolbar_diario;
     EditText mensagemDiario;
     Button escolher_imagem;
     ImageView imagem;
@@ -65,8 +66,13 @@ public class DiarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diario);
+        
+        toolbar_diario = (Toolbar) findViewById(R.id.tool_bar_diario);
+        setSupportActionBar(toolbar_diario);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar_diario.setTitle("");
+        toolbar_diario.setSubtitle("");
 
-        //voltar = (ImageButton) findViewById(R.id.buttonVoltarDiario);
         mensagemDiario = (EditText) findViewById(R.id.editTextDiario);
         enviar = (Button) findViewById(R.id.buttonDiario);
         escolher_imagem = (Button) findViewById(R.id.button_choose_image);
@@ -78,6 +84,15 @@ public class DiarioActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads_diario");
         mFirebaseDatase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        toolbar_diario.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                i = new Intent(DiarioActivity.this, MenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
         String nome_turma = bundle.getString("nome_turma");
@@ -95,15 +110,6 @@ public class DiarioActivity extends AppCompatActivity {
                 }
             }
         };
-
-       /* voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i;
-                i = new Intent(DiarioActivity.this, MenuActivity.class);
-                startActivity(i);
-            }
-        });*/
 
         escolher_imagem.setOnClickListener(new View.OnClickListener() {
             @Override
