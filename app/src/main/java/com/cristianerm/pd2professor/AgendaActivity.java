@@ -30,7 +30,7 @@ public class AgendaActivity extends AppCompatActivity {
     Spinner spinner_alimento;
     Spinner spinner_sono;
 
-    ImageButton voltar;
+    //ImageButton voltar;
     Button button_agenda;
 
     private static final String TAG = "Agenda Activity";
@@ -50,7 +50,7 @@ public class AgendaActivity extends AppCompatActivity {
         spinner_aluno = (Spinner) findViewById(R.id.spinner_aluno);
         spinner_alimento = (Spinner) findViewById(R.id.spinner);
         spinner_sono = (Spinner) findViewById(R.id.spinner_sono);
-        voltar = (ImageButton) findViewById(R.id.buttonVoltarAgenda);
+        //voltar = (ImageButton) findViewById(R.id.buttonVoltarAgenda);
         button_agenda = (Button) findViewById(R.id.button_agenda);
 
         mAuth = FirebaseAuth.getInstance();
@@ -84,14 +84,14 @@ public class AgendaActivity extends AppCompatActivity {
             }
         });
 
-        voltar.setOnClickListener(new View.OnClickListener() {
+        /*voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(AgendaActivity.this, MenuActivity.class);
                 startActivity(i);
             }
-        });
+        }); */
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
