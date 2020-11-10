@@ -25,7 +25,7 @@ import java.util.Date;
 
 public class OuvidoriaActivity extends AppCompatActivity {
 
-    ImageButton voltar;
+    //ImageButton voltar;
     EditText mensagemOuvidoria;
     CheckBox mensagemAnonima;
     Button enviar;
@@ -43,7 +43,7 @@ public class OuvidoriaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ouvidoria);
 
-        voltar = (ImageButton) findViewById(R.id.buttonVoltarOuvidoria);
+        //voltar = (ImageButton) findViewById(R.id.buttonVoltarOuvidoria);
         mensagemOuvidoria = (EditText) findViewById(R.id.editTextOuvidoria);
         mensagemAnonima = (CheckBox) findViewById(R.id.checkBoxOuvidoria);
         enviar = (Button) findViewById(R.id.buttonOuvidoria);
@@ -65,14 +65,14 @@ public class OuvidoriaActivity extends AppCompatActivity {
             }
         };
 
-        voltar.setOnClickListener(new View.OnClickListener() {
+        /*voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(OuvidoriaActivity.this, MenuActivity.class);
                 startActivity(i);
             }
-        });
+        }); */
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override

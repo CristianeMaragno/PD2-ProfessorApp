@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,79 +7,87 @@
     android:background="@color/Amarelo"
     tools:context=".OuvidoriaActivity">
 
-    <ImageButton
-        android:id="@+id/buttonVoltarOuvidoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/homeAsUpIndicator"
-        android:tint="@color/Vermelho"
-        android:background="@null"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="OUVIDORIA"
-        android:textColor="@color/Vermelho"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editTextOuvidoria"
-        android:layout_width="@dimen/width_big_edittext"
-        android:layout_height="@dimen/height_big_edittext"
-        android:background="@drawable/edit_box_background"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.50"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.50"
-        android:textColor="@color/Vermelho"
-        android:textCursorDrawable="@null"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tool_bar_ouvidoria"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_arrow"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <CheckBox
-        android:id="@+id/checkBoxOuvidoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mensagem anônima"
-        app:layout_constraintStart_toStartOf="@+id/editTextOuvidoria"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOuvidoria" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
 
-    <Button
-        android:id="@+id/buttonOuvidoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOuvidoria"
-        android:textColor="@color/Amarelo"
-        android:background="@drawable/button_style"/>
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OUVIDORIA"
+                android:textColor="@color/Vermelho"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/textErrorOuvidoria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/Vermelho"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxOuvidoria"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxOuvidoria" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/editTextOuvidoria"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_big_edittext"
+                android:background="@drawable/edit_box_background"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:textColor="@color/Vermelho"
+                android:textCursorDrawable="@null"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxOuvidoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mensagem anônima" />
+
+            <TextView
+                android:id="@+id/textErrorOuvidoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/Vermelho"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonOuvidoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ENVIAR"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
