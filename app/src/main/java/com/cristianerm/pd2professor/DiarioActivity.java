@@ -66,7 +66,7 @@ public class DiarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diario);
-        
+
         toolbar_diario = (Toolbar) findViewById(R.id.tool_bar_diario);
         setSupportActionBar(toolbar_diario);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
