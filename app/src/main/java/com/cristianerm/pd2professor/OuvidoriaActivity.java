@@ -2,6 +2,7 @@ package com.cristianerm.pd2professor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import java.util.Date;
 
 public class OuvidoriaActivity extends AppCompatActivity {
 
-    //ImageButton voltar;
+    Toolbar toolbar_ouvidoria;
     EditText mensagemOuvidoria;
     CheckBox mensagemAnonima;
     Button enviar;
@@ -43,7 +44,12 @@ public class OuvidoriaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ouvidoria);
 
-        //voltar = (ImageButton) findViewById(R.id.buttonVoltarOuvidoria);
+        toolbar_ouvidoria = (Toolbar) findViewById(R.id.tool_bar_ouvidoria);
+        setSupportActionBar(toolbar_ouvidoria);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar_ouvidoria.setTitle("");
+        toolbar_ouvidoria.setSubtitle("");
+
         mensagemOuvidoria = (EditText) findViewById(R.id.editTextOuvidoria);
         mensagemAnonima = (CheckBox) findViewById(R.id.checkBoxOuvidoria);
         enviar = (Button) findViewById(R.id.buttonOuvidoria);
@@ -52,6 +58,15 @@ public class OuvidoriaActivity extends AppCompatActivity {
         mFirebaseDatase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         myRef = mFirebaseDatase.getReference().child("ouvidoria");
+
+        toolbar_ouvidoria.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent i;
+                i = new Intent(OuvidoriaActivity.this, MenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -64,15 +79,6 @@ public class OuvidoriaActivity extends AppCompatActivity {
                 }
             }
         };
-
-        /*voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i;
-                i = new Intent(OuvidoriaActivity.this, MenuActivity.class);
-                startActivity(i);
-            }
-        }); */
 
         enviar.setOnClickListener(new View.OnClickListener() {
             @Override
