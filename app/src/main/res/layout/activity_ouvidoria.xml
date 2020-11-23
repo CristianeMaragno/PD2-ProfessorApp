@@ -33,7 +33,6 @@
             android:paddingTop="16dp">
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OUVIDORIA"
@@ -53,10 +52,11 @@
             android:layout_marginTop="25dp">
 
             <EditText
-                android:id="@+id/editTextOuvidoria"
+                android:id="@+id/edit_text_ouvidoria"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_big_edittext"
                 android:background="@drawable/edit_box_background"
+                android:hint="Sugestão/Reclamação/Outro"
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
@@ -67,19 +67,19 @@
                 android:paddingTop="10dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxOuvidoria"
+                android:id="@+id/check_box_ouvidoria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mensagem anônima" />
 
             <TextView
-                android:id="@+id/textErrorOuvidoria"
+                android:id="@+id/text_view_error_ouvidoria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/Vermelho"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonOuvidoria"
+                android:id="@+id/button_ouvidoria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ENVIAR"

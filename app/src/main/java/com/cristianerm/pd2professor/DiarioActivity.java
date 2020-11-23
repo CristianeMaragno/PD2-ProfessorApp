@@ -42,12 +42,12 @@ import java.util.Date;
 public class DiarioActivity extends AppCompatActivity {
 
     Toolbar toolbar_diario;
-    EditText mensagemDiario;
-    Button escolher_imagem;
-    ImageView imagem;
-    Button enviar;
-    TextView mensagemError;
-    ProgressBar mProgressBar;
+    EditText edit_text_mensagem;
+    Button button_escolher_imagem;
+    ImageView image_view_imagem;
+    Button button_enviar;
+    TextView text_view_mensagem_error;
+    ProgressBar progress_bar;
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -73,17 +73,22 @@ public class DiarioActivity extends AppCompatActivity {
         toolbar_diario.setTitle("");
         toolbar_diario.setSubtitle("");
 
-        mensagemDiario = (EditText) findViewById(R.id.editTextDiario);
-        enviar = (Button) findViewById(R.id.buttonDiario);
-        escolher_imagem = (Button) findViewById(R.id.button_choose_image);
-        imagem = (ImageView) findViewById(R.id.image_view_diario);
-        mensagemError = (TextView) findViewById(R.id.textErrorDiario);
-        mProgressBar = findViewById(R.id.progressBarDiario);
-        mProgressBar.setVisibility(View.GONE);
+        edit_text_mensagem = (EditText) findViewById(R.id.edit_text_diario);
+        button_escolher_imagem = (Button) findViewById(R.id.button_choose_image_diario);
+        image_view_imagem = (ImageView) findViewById(R.id.image_view_diario);
+        button_enviar = (Button) findViewById(R.id.button_diario);
+        text_view_mensagem_error = (TextView) findViewById(R.id.text_view_error_diario);
+        progress_bar = findViewById(R.id.progress_bar_diario);
+
+        progress_bar.setVisibility(View.GONE);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads_diario");
         mFirebaseDatase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        Bundle bundle = getIntent().getExtras();
+        String nome_turma = bundle.getString("nome_turma");
+        myRef = mFirebaseDatase.getReference().child("diario_professor").child(nome_turma);
 
         toolbar_diario.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
@@ -93,11 +98,6 @@ public class DiarioActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        Bundle bundle = getIntent().getExtras();
-        String nome_turma = bundle.getString("nome_turma");
-
-        myRef = mFirebaseDatase.getReference().child("diario_professor").child(nome_turma);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -111,25 +111,25 @@ public class DiarioActivity extends AppCompatActivity {
             }
         };
 
-        escolher_imagem.setOnClickListener(new View.OnClickListener() {
+        button_escolher_imagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFileChooser();
+                OpenFileChooser();
 
             }
         });
 
-        enviar.setOnClickListener(new View.OnClickListener() {
+        button_enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mensagem = mensagemDiario.getText().toString();
+                String mensagem = edit_text_mensagem.getText().toString();
 
                 if(!mensagem.equals("")) {
-                    mensagemError.setText("");
-                    mProgressBar.setVisibility(View.VISIBLE);
-                    uploadFile();
+                    text_view_mensagem_error.setText("");
+                    progress_bar.setVisibility(View.VISIBLE);
+                    UploadFile();
                 }else{
-                    mensagemError.setText("O campo de texto está vazio");
+                    text_view_mensagem_error.setText("O campo de texto está vazio");
                 }
 
             }
@@ -138,7 +138,7 @@ public class DiarioActivity extends AppCompatActivity {
 
     }
 
-    private void openFileChooser() {
+    private void OpenFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -152,20 +152,20 @@ public class DiarioActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
-            Picasso.get().load(mImageUri).into(imagem);
+            Picasso.get().load(mImageUri).into(image_view_imagem);
         }
     }
 
-    private String getFileExtension(Uri uri) {
+    private String GetFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private void uploadFile(){
+    private void UploadFile(){
         if (mImageUri != null) {
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
+                    + "." + GetFileExtension(mImageUri));
 
             fileReference.putFile(mImageUri).continueWithTask(
                     new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -184,7 +184,7 @@ public class DiarioActivity extends AppCompatActivity {
                                 String data_atual = currentTime.toString();
                                 String hora_e_data = "Hora: "+data_atual.substring(11,19) + " Data: " + data_atual.substring(4,10);
 
-                                String mensagem = mensagemDiario.getText().toString().trim();
+                                String mensagem = edit_text_mensagem.getText().toString().trim();
                                 String url_image = downloadUri.toString();
 
                                 Upload_diario upload = new Upload_diario(hora_e_data, mensagem, url_image);
@@ -192,8 +192,8 @@ public class DiarioActivity extends AppCompatActivity {
                                 String uploadId = myRef.push().getKey();
                                 myRef.child(uploadId).setValue(upload);
 
-                                mensagemDiario.getText().clear();
-                                mProgressBar.setVisibility(View.GONE);
+                                edit_text_mensagem.getText().clear();
+                                progress_bar.setVisibility(View.GONE);
                                 Toast.makeText(DiarioActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
                             }
                             else { Toast.makeText(DiarioActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -214,7 +214,7 @@ public class DiarioActivity extends AppCompatActivity {
             String data_atual = currentTime.toString();
             String hora_e_data = "Hora: "+data_atual.substring(11,19) + " Data: " + data_atual.substring(4,10);
 
-            String mensagem = mensagemDiario.getText().toString().trim();
+            String mensagem = edit_text_mensagem.getText().toString().trim();
             String url_image = "No image";
 
             Upload_diario upload = new Upload_diario(hora_e_data, mensagem, url_image);
@@ -222,8 +222,8 @@ public class DiarioActivity extends AppCompatActivity {
             String uploadId = myRef.push().getKey();
             myRef.child(uploadId).setValue(upload);
 
-            mensagemDiario.getText().clear();
-            mProgressBar.setVisibility(View.GONE);
+            edit_text_mensagem.getText().clear();
+            progress_bar.setVisibility(View.GONE);
         }
     }
 

@@ -27,11 +27,10 @@ import java.util.Date;
 
 public class AgendaActivity extends AppCompatActivity {
 
+    Toolbar toolbar_agenda;
     Spinner spinner_aluno;
     Spinner spinner_alimento;
     Spinner spinner_sono;
-
-    Toolbar toolbar_agenda;
     Button button_agenda;
 
     private static final String TAG = "Agenda Activity";
@@ -39,7 +38,7 @@ public class AgendaActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
+    private DatabaseReference myRefGetAlunos;
     private DatabaseReference myRef2;
     private DatabaseReference myRef3;
 
@@ -54,9 +53,9 @@ public class AgendaActivity extends AppCompatActivity {
         toolbar_agenda.setTitle("");
         toolbar_agenda.setSubtitle("");
 
-        spinner_aluno = (Spinner) findViewById(R.id.spinner_aluno);
-        spinner_alimento = (Spinner) findViewById(R.id.spinner);
-        spinner_sono = (Spinner) findViewById(R.id.spinner_sono);
+        spinner_aluno = (Spinner) findViewById(R.id.spinner_aluno_agenda);
+        spinner_alimento = (Spinner) findViewById(R.id.spinner_alimento_agenda);
+        spinner_sono = (Spinner) findViewById(R.id.spinner_sono_agenda);
         button_agenda = (Button) findViewById(R.id.button_agenda);
 
         mAuth = FirebaseAuth.getInstance();
@@ -64,7 +63,7 @@ public class AgendaActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         String nome_turma = bundle.getString("nome_turma");
-        myRef = mFirebaseDatase.getReference().child("turmas").child(nome_turma);
+        myRefGetAlunos = mFirebaseDatase.getReference().child("turmas").child(nome_turma);
 
         toolbar_agenda.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,7 +76,7 @@ public class AgendaActivity extends AppCompatActivity {
 
         final ArrayList<String> alunos_turma = new ArrayList<String>();
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRefGetAlunos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 alunos_turma.clear();

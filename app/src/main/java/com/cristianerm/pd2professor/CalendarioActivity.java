@@ -32,8 +32,8 @@ import java.util.Date;
 public class CalendarioActivity extends AppCompatActivity {
 
     Toolbar toolbar_calendario;
-    MaterialCalendarView calendarView;
-    ListView datas_calendario_escolar;
+    MaterialCalendarView calendar_view;
+    ListView list_view_datas_calendario_escolar;
     String mes_atual;
     String ano_atual;
     String data_atual;
@@ -45,7 +45,6 @@ public class CalendarioActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private DatabaseReference myRef2;
-    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +57,14 @@ public class CalendarioActivity extends AppCompatActivity {
         toolbar_calendario.setTitle("");
         toolbar_calendario.setSubtitle("");
 
-        calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
-        datas_calendario_escolar = (ListView) findViewById(R.id.listCalendar);
+        calendar_view = (MaterialCalendarView) findViewById(R.id.calendar_view_calendario);
+        list_view_datas_calendario_escolar = (ListView) findViewById(R.id.list_view_calendario);
+
+        DateFormat dateFormat = new SimpleDateFormat("MM");
+        Date data_data_i = new Date();
+        ano_atual = data_data_i.toString().substring(30,34);
+        mes_atual = data_data_i.toString().substring(4,7);
+        data_atual = Recuperar_ref(mes_atual, ano_atual);
 
         toolbar_calendario.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
@@ -76,23 +81,16 @@ public class CalendarioActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatase = FirebaseDatabase.getInstance();
 
-        DateFormat dateFormat = new SimpleDateFormat("MM");
-        Date data_data_i = new Date();
-        ano_atual = data_data_i.toString().substring(30,34);
-        mes_atual = data_data_i.toString().substring(4,7);
-        data_atual = Recuperar_ref(mes_atual, ano_atual);
-        Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();
-
         myRef = mFirebaseDatase.getReference().child("calendario_pedagogico").child(data_atual);
 
-        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+        calendar_view.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 Date data_data = date.getDate();
                 ano_atual = data_data.toString().substring(30,34);
                 mes_atual = data_data.toString().substring(4,7);
                 data_atual = Recuperar_ref(mes_atual, ano_atual);
-                Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();
+                //Toast.makeText(CalendarioActivity.this, data_atual, Toast.LENGTH_LONG).show();
                 //pegar eventos no database e atualizar list View com os eventos do mês pedido
                 myRef2 = mFirebaseDatase.getReference().child("calendario_pedagogico").child(data_atual);
                 myRef2.addValueEventListener(new ValueEventListener() {
@@ -110,7 +108,7 @@ public class CalendarioActivity extends AppCompatActivity {
                             datas_calendario.add(cInfo.getEvento());
 
                         }
-                        datas_calendario_escolar.setAdapter(adapter);
+                        list_view_datas_calendario_escolar.setAdapter(adapter);
                     }
 
                     @Override
@@ -126,9 +124,9 @@ public class CalendarioActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(CalendarioActivity.this, "User sighed in", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CalendarioActivity.this, "User sighed in", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(CalendarioActivity.this, "User not sighed in", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CalendarioActivity.this, "User not sighed in", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -149,7 +147,7 @@ public class CalendarioActivity extends AppCompatActivity {
 
                 }
 
-                datas_calendario_escolar.setAdapter(adapter);
+                list_view_datas_calendario_escolar.setAdapter(adapter);
             }
 
             @Override

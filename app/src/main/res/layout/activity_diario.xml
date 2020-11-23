@@ -33,7 +33,6 @@
             android:paddingTop="16dp">
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DIÁRIO"
@@ -53,7 +52,7 @@
             android:layout_marginTop="25dp">
 
             <EditText
-                android:id="@+id/editTextDiario"
+                android:id="@+id/edit_text_diario"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:background="@drawable/edit_box_background"
@@ -68,13 +67,13 @@
                 android:textCursorDrawable="@null"/>
 
             <TextView
-                android:id="@+id/textErrorDiario"
+                android:id="@+id/text_view_error_diario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/Vermelho"/>
 
             <Button
-                android:id="@+id/button_choose_image"
+                android:id="@+id/button_choose_image_diario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -86,7 +85,7 @@
                 android:layout_height="250dp" />
 
             <ProgressBar
-                android:id="@+id/progressBarDiario"
+                android:id="@+id/progress_bar_diario"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +94,7 @@
                 android:layout_gravity="center"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonDiario"
+                android:id="@+id/button_diario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ENVIAR"

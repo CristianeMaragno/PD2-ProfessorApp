@@ -27,10 +27,10 @@ import java.util.Date;
 public class OuvidoriaActivity extends AppCompatActivity {
 
     Toolbar toolbar_ouvidoria;
-    EditText mensagemOuvidoria;
-    CheckBox mensagemAnonima;
-    Button enviar;
-    TextView mensagemError;
+    EditText edit_text_mensagem;
+    CheckBox check_box_anonimato;
+    Button button_enviar;
+    TextView text_view_mensagem_error;
 
     private static final String TAG = "OuvidoriaActivity";
 
@@ -50,10 +50,10 @@ public class OuvidoriaActivity extends AppCompatActivity {
         toolbar_ouvidoria.setTitle("");
         toolbar_ouvidoria.setSubtitle("");
 
-        mensagemOuvidoria = (EditText) findViewById(R.id.editTextOuvidoria);
-        mensagemAnonima = (CheckBox) findViewById(R.id.checkBoxOuvidoria);
-        enviar = (Button) findViewById(R.id.buttonOuvidoria);
-        mensagemError = (TextView) findViewById(R.id.textErrorOuvidoria);
+        edit_text_mensagem = (EditText) findViewById(R.id.edit_text_ouvidoria);
+        check_box_anonimato = (CheckBox) findViewById(R.id.check_box_ouvidoria);
+        button_enviar = (Button) findViewById(R.id.button_ouvidoria);
+        text_view_mensagem_error = (TextView) findViewById(R.id.text_view_error_ouvidoria);
 
         mFirebaseDatase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -80,13 +80,13 @@ public class OuvidoriaActivity extends AppCompatActivity {
             }
         };
 
-        enviar.setOnClickListener(new View.OnClickListener() {
+        button_enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mensagem = mensagemOuvidoria.getText().toString();
+                String mensagem = edit_text_mensagem.getText().toString();
 
                 if(!mensagem.equals("")){
-                    mensagemError.setText("");
+                    text_view_mensagem_error.setText("");
 
                     Date currentTime = Calendar.getInstance().getTime();
                     String data_atual = currentTime.toString();
@@ -95,7 +95,7 @@ public class OuvidoriaActivity extends AppCompatActivity {
                     Bundle bundle = getIntent().getExtras();
                     String nome_professor = bundle.getString("nome_professor");
 
-                    if(mensagemAnonima.isChecked()){
+                    if(check_box_anonimato.isChecked()){
                         nome_professor = "Anônimo";
                     }
 
@@ -105,7 +105,7 @@ public class OuvidoriaActivity extends AppCompatActivity {
                     myRef.child(key).child("mensagem").setValue(mensagem);
                     myRef.child(key).child("professor").setValue(nome_professor);
                 }else{
-                    mensagemError.setText("O campo de texto está vazia");
+                    text_view_mensagem_error.setText("O campo de texto está vazia");
                 }
             }
         });

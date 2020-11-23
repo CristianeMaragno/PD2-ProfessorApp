@@ -33,7 +33,6 @@
             android:paddingTop="16dp">
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AGENDA"
@@ -59,13 +58,12 @@
                 android:layout_weight="0.3">
 
                 <TextView
-                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aluno"/>
 
                 <Spinner
-                    android:id="@+id/spinner_aluno"
+                    android:id="@+id/spinner_aluno_agenda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -78,13 +76,12 @@
                 android:layout_weight="0.3">
 
                 <TextView
-                    android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Alimentação" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/spinner_alimento_agenda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -97,13 +94,12 @@
                 android:layout_weight="0.3">
 
                 <TextView
-                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sono"/>
 
                 <Spinner
-                    android:id="@+id/spinner_sono"
+                    android:id="@+id/spinner_sono_agenda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

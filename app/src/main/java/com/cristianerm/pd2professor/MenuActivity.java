@@ -23,13 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity {
 
-    ImageView agenda;
-    ImageView calendario;
-    ImageView ouvidoria;
-    ImageView diario;
+    ImageView calendario, agenda, diario, ouvidoria;
 
-    Button logout;
-    TextView identificadorProfessor;
+    Button button_logout;
+    TextView text_view_identificador;
 
     private static final String TAG = "MenuActivity";
 
@@ -44,13 +41,12 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        agenda = (ImageView) findViewById(R.id.agendaIcon);
-        calendario = (ImageView) findViewById(R.id.calendarioIcon);
-        ouvidoria = (ImageView) findViewById(R.id.ouvidoriaIcon);
-        diario = (ImageView) findViewById(R.id.diarioIcon);
-
-        logout = (Button) findViewById(R.id.buttonLogout);
-        identificadorProfessor = (TextView) findViewById(R.id.identificadorProfessor);
+        agenda = (ImageView) findViewById(R.id.image_view_agenda);
+        calendario = (ImageView) findViewById(R.id.image_view_calendario);
+        ouvidoria = (ImageView) findViewById(R.id.image_view_ouvidoria);
+        diario = (ImageView) findViewById(R.id.image_view_diario);
+        button_logout = (Button) findViewById(R.id.button_logout);
+        text_view_identificador = (TextView) findViewById(R.id.text_view_identificador_professor);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatase = FirebaseDatabase.getInstance();
@@ -82,7 +78,7 @@ public class MenuActivity extends AppCompatActivity {
 
                     Log.d(TAG, "showData: Nome: " + uInfo.getNome());
 
-                    identificadorProfessor.setText(uInfo.getNome());
+                    text_view_identificador.setText(uInfo.getNome());
                 }
             }
             @Override
@@ -90,7 +86,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
@@ -161,7 +157,7 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i;
                 i = new Intent(MenuActivity.this, OuvidoriaActivity.class);
-                String nome_professor = identificadorProfessor.getText().toString();
+                String nome_professor = text_view_identificador.getText().toString();
                 if(nome_professor == "Professor(a)"){
                     Toast.makeText(MenuActivity.this, "Espere um momento, aplicação carregando...", Toast.LENGTH_LONG).show();
                 }else{
