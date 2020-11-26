@@ -5,4 +5,5 @@ Technologies used: Java, Picasso, Firebase Authentication, Firebase Realtime Dat
 
 
 Aplicativo para escola privada, versão dos professores. Permite ao professor postar sobre o dia de cada aluno, ver os eventos do calendário escolar, postar mensagens para toda a turma e enviar mensagens para o centro de opinião. 
+
 Tecnologias utilizadas: Java, Picasso, Firebase Authentication, Firebase Realtime Database and Firebase Storage. 
